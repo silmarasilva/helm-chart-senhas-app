@@ -1,13 +1,22 @@
-# helm-chart-senhas-app
+# Helm Chart - Senhas App
 
-# Commands
+Este repositório contém o Helm Chart para a aplicação **Senhas App** baseada em dois componentes principais: o serviço de backend que gerencia as senhas e o serviço de banco de dados Redis que armazena as informações temporárias e persistentes.
 
-# helm install silmara-senhas-app ./
+## Comandos Úteis
 
-# k get pods,svc,deploy
+### Comandos para Instalar o Chart no Kubernetes
 
-# k port-foward silmara-senhas-app 5000:5000
+Para instalar o Helm Chart na sua instância do Kubernetes, execute o seguinte comando no diretório onde o chart está localizado:
 
-# helm uninstall silmara-senhas-app 
+```bash
+helm install silmara-senhas ./
 
-# helm update silmara-senhas-app ./
+helm uninstall silmara-senhas
+
+helm update silmara-senhas ./
+
+helm update silmara-senhas ./
+
+k get pods,svc,deploy
+
+k port-forward svc/silmara-senhas-app 5000:5000
