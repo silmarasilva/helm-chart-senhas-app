@@ -19,4 +19,4 @@ helm update silmara-senhas ./
 
 k get pods,svc,deploy
 
-k port-forward svc/silmara-senhas-app 5000:5000
+k port-forward svc/silmara-senhas-app 5000:5000  ---> Acessar via localhost:5000
