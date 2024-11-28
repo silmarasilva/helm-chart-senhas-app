@@ -1,0 +1,24 @@
+{{- range $component, $config := .Values.services }}
+  {{- range $port := $config.ports }}
+apiVersion: v1
+kind: Service
+metadata: 
+  name: {{ $component }}-{{ $port.name }}
+  labels:
+    app:  {{ $config.labels.app }}
+spec: 
+  type: {{ $port.serviceType }}
+  ports: 
+  - name: {{ $port.port }}
+    port: {{ $port.targetPort }}
+    protocol: TCP
+    name: {{ $port.name }}
+    {{- if eq .serviceType "NodePort" }}
+    nodePort: {{ .NodePort }}
+    {{- end }}
+    targetPort: {{ .targetPort }} 
+  selector: 
+    app: {{ $config.labels.app }}
+---
+  {{- end }}
+{{- end }} 

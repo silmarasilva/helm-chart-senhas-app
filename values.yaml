@@ -1,0 +1,67 @@
+deployments: 
+  silmara-senhas:
+    name: "silmara-senhas-helm"
+    image: "linuxtips/giropops-senhas:1.0"    
+    replicas: "3"
+    ports: 
+      - port: 5000
+        targetPort: 5000
+        name: "silmara-senhas-port"
+        serviceType: "NodePort"
+        NodePort: "32500" 
+      - port: 8088 
+        targetPort: 8088
+        name: "silmara-senhas-metrics"
+        serviceType: "ClusterIP"
+    labels: 
+      app: "silmara-senhas"
+      env: "labs"
+      live: "true"
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits: 
+        memory: "128Mi"
+        cpu: "500m"
+  redis:
+    name: "redis-helm"
+    image: "redis"
+    replicas: "1"
+    labels: 
+      app: "redis"
+      env: "labs"
+      live: "true"
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits: 
+        memory: "128Mi"
+        cpu: "500m"
+services:
+  silmara-senhas:
+    ports:  
+      - port: 5000
+        targetPort: 5000
+        name: "app"
+        serviceType: "NodePort"
+        NodePort: "32500"
+      - port: 8088  
+        targetPort: 8088
+        name: "metrics"
+        serviceType: "ClusterIP"
+    labels: 
+      app: "silmara-senhas"
+      env: "labs"
+      live: "true"
+  redis: 
+    ports:
+      - port: 6379      
+        targetPort: 6379        
+        name: "service"
+        serviceType: "ClusterIP"
+    labels: 
+      app: "redis"
+      env: "labs"
+      live: "true"
