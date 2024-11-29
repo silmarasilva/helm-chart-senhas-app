@@ -65,3 +65,15 @@ services:
       app: "redis"
       env: "labs"
       live: "true"
+observability:
+  silmara-senhas:
+    logging: true
+    metrics:
+      enabled: true
+      path: "/metrics"
+databases:
+  silmara-senha: 
+    mysql: 
+      host: "mysql.svc.cluster.local"
+      port: 3306
+      name: "MyDB"
