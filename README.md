@@ -19,4 +19,50 @@ helm update silmara-senhas ./
 
 k get pods,svc,deploy
 
-k port-forward svc/silmara-senhas-app 5000:5000  ---> Acessar via localhost:5000
+k port-forward svc/silmara-senhas-app 5000:5000
+
+helm lint silmara-senhas
+
+helm template silmara-senhas-chart
+
+helm package charts/silmara-senhas-chart
+
+helm repo index --url https://github.com/silmarasilva/helm-chart-senhas-app.git .
+
+No github > repositório > settings > page ---> definir a branch (root)
+
+Vai aparecer essa msg até que sua página esteja pronta: "Your GitHub Pages site is currently being built from the main branch"
+
+helm repo index -url  <link gerado no passo acima pelo github>
+
+Commit com as alteracoes.
+
+helm repo add <repo name> <link do seu chart>
+
+helm repo list 
+
+helm search repo <nome do seu chart>
+
+helm install <chart senha> <nome atribuido ao repo> 
+
+helm show all meu-novo-repos/silmara-senhas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
